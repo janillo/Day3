@@ -1,0 +1,30 @@
+mat-list-option {
+    min-width: 350px;
+}
+
+mat-form-field {
+    min-width: 350px;
+    margin: 0 0 0 20px
+}
+
+.btn-delete {
+    display: inline-block;
+}
+
+.item-done {
+    text-decoration: line-through;
+    font-style: italic;
+}
+
+.filter-done {
+    display: none;
+}
+
+.align {
+    float: none;
+    margin: 0 auto;
+}
+
+mat-card {
+    margin-top: 20px;
+}

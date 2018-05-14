@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="span6 align">
+            <mat-card class="mat-elevation-z8">
+                <mat-card-header>
+                    <div class="row">
+                        <div>
+                            <mat-checkbox (change)="selectAll($event)"></mat-checkbox>
+                            <mat-form-field class="example-full-width">
+                                <input matInput
+                                       placeholder="What needs to be done?"
+                                       (keydown.enter)="addTodo($event.target.value)"
+                                       [(ngModel)]="valueTask">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-selection-list #tasks>
+                        <div class="row"
+                             *ngFor="let todo of (todos$ | async)">
+                            <mat-list-option checkboxPosition="before"
+                                             [value]="todo"
+                                             [selected]="todo.state ? 'checked' : null"
+                                             [ngClass]="{'item-done': todo.state}">
+                                <span matLine> {{todo.task}} </span>
+                            </mat-list-option>
+                            <button mat-icon-button
+                                    class="btn-delete"
+                                    (click)="deleteTodo(todo.id)">
+                                  <mat-icon>delete</mat-icon>
+              </button>
+                        </div>
+                    </mat-selection-list>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <mat-chip-list>
+
+                                <mat-chip color="primary"
+                                          selected="true">{{tasks.selectedOptions.selected.length}} Items</mat-chip>
+
+                            </mat-chip-list>
+                        </div>
+                        <div class="button-row">
+                            <button mat-button
+                                    color="primary"
+                                    (click)="refreshTodos()">All</button>
+                            <button mat-button
+                                    color="primary"
+                                    (click)="filterTodos(false)">Active</button>
+                            <button mat-button
+                                    color="primary"
+                                    (click)="filterTodos(true)">Completed</button>
+                        </div>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
